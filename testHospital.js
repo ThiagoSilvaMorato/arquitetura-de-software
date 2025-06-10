@@ -3,6 +3,11 @@ const Consulta = require("./consulta");
 const Exame = require("./exame");
 const Prontuario = require("./prontuario");
 const Medico = require("./medico");
+const Address = require("./address");
+const EmergencyContact = require("./emergencyContact");
+
+const endereco = new Address("Rua A", 123, "Cidade X", "São Paulo", "12345-678");
+const contatoEmergencia = new EmergencyContact("Maria Silva", "(11) 91234-5678");
 
 const paciente1 = new Paciente(
   1,
@@ -12,10 +17,10 @@ const paciente1 = new Paciente(
   "Masculino",
   "O+",
   ["Nenhuma"],
-  "Rua A, 123, Cidade X",
+  endereco,
   "(11) 98765-4321",
   "joao.silva@email.com",
-  { nome: "Maria Silva", telefone: "(11) 91234-5678" }
+  contatoEmergencia
 );
 
 const medico1 = new Medico(
@@ -56,4 +61,4 @@ prontuario1.adicionarDiagnostico("Hipertensão arterial");
 prontuario1.adicionarTratamento("Recomendar dieta balanceada e exercícios regulares");
 prontuario1.adicionarMedicamento("Losartana 50mg, 1x ao dia");
 
-console.log("Paciente:", prontuario1);
+console.log("Paciente:", paciente1);
