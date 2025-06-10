@@ -1,26 +1,55 @@
 class Paciente {
-  constructor(nome, dataNasc, historico, alergias, endereco, telefone, email) {
+  constructor(
+    id,
+    cpf,
+    nome,
+    dataNasc,
+    genero,
+    tipoSanguineo,
+    alergias,
+    endereco,
+    telefone,
+    email,
+    contatoEmergencia
+  ) {
+    this.id = id;
+    this.cpf = cpf;
     this.nome = nome;
     this.dataNasc = dataNasc;
-    this.historico = historico;
+    this.genero = genero;
+    this.tipoSanguineo = tipoSanguineo;
     this.alergias = alergias;
     this.endereco = endereco;
     this.telefone = telefone;
     this.email = email;
+    this.contatoEmergencia = contatoEmergencia;
+
+    this.historicoMedico = [];
     this.consultas = [];
     this.exames = [];
   }
 
-  agendarConsulta(data, medico) {
-    this.consultas.push({ data, medico });
+  agendarConsulta(consulta) {
+    const consultaNoMesmoHoraro = this.consultas.some((c) => c.data === consulta.data);
 
-    console.log(`Consulta agendada para ${data} com ${medico}`);
+    if (consultaNoMesmoHoraro) {
+      console.log("Paciente já possui uma consulta agendada para este horário.");
+      return;
+    }
+    this.consultas.push(consulta);
+
+    console.log(`Consulta agendada para ${consulta.data} com ${consulta.medico.nome}`);
   }
 
-  adicionarExame(nomeExame, resultado) {
-    this.exames.push({ nomeExame, resultado });
+  adicionarExame(exame) {
+    this.exames.push(exame);
 
-    console.log(`Exame ${nomeExame} adicionado com resultado: ${resultado}`);
+    console.log(`Exame ${exame.nome} adicionado com resultado: ${exame.resultado}`);
+  }
+
+  adicionarEventoHistorico(evento) {
+    this.historicoMedico.push(evento);
+    console.log(`Evento médico adicionado ao histórico do paciente: ${this.nome}`);
   }
 }
 
