@@ -53,16 +53,4 @@ class Paciente {
   }
 }
 
-const paciente1 = new Paciente(
-  "Thiago Morato",
-  "1999-10-22",
-  "Nenhum histórico relevante",
-  "Nenhuma alergia conhecida",
-  "Rua Exemplo, 123, São Paulo, SP",
-  "(11) 98765-4321",
-  "thiagomorato@teste.com"
-);
-
-paciente1.agendarConsulta("2023-10-30", "Dr. Silva");
-paciente1.adicionarExame("Hemograma", "Normal");
-// console.log(paciente1);
+module.exports = Paciente;

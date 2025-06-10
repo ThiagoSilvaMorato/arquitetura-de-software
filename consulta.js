@@ -13,3 +13,5 @@ class Consulta {
     return `Consulta agendada para ${this.data} às ${this.hora} com Dr(a). ${this.medico.nome} (${this.especialidade})`;
   }
 }
+
+module.exports = Consulta;
