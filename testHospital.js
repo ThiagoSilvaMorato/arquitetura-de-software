@@ -2,7 +2,7 @@ const Paciente = require("./paciente");
 const Consulta = require("./consulta");
 const Exame = require("./exame");
 const Prontuario = require("./prontuario");
-const Medico = require("./medico");
+const Doctor = require("./doctor");
 const Address = require("./address");
 const EmergencyContact = require("./emergencyContact");
 
@@ -23,20 +23,22 @@ const paciente1 = new Paciente(
   contatoEmergencia
 );
 
-const medico1 = new Medico(
+const doctor1 = new Doctor(
   1,
   "CRM/SP 123456",
   "Dr. Ana Souza",
   ["Cardiologia", "Pediatria"],
-  "(11) 99876-5432",
-  { dias: ["Segunda", "Quarta"], horario: "08:00-12:00" }
+  "(11) 99876-5432"
 );
+
+doctor1.addWorkingHours("Segunda-feira", { start: "08:00", end: "12:00" });
+doctor1.addWorkingHours("Quarta-feira", { start: "14:00", end: "18:00" });
 
 const consulta1 = new Consulta(
   1,
   "2023-10-15T10:00:00Z",
   paciente1,
-  medico1,
+  doctor1,
   "Dor no peito",
   "Agendada",
   "Paciente relatou dor no peito após esforço físico."
@@ -48,7 +50,7 @@ const exame1 = new Exame(
   "Normal",
   "2023-10-15T11:00:00Z",
   "Laboratório X",
-  medico1,
+  doctor1,
   paciente1
 );
 
@@ -61,4 +63,4 @@ prontuario1.adicionarDiagnostico("Hipertensão arterial");
 prontuario1.adicionarTratamento("Recomendar dieta balanceada e exercícios regulares");
 prontuario1.adicionarMedicamento("Losartana 50mg, 1x ao dia");
 
-console.log("Paciente:", paciente1);
+console.log("Paciente:", doctor1);
