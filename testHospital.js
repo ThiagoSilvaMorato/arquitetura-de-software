@@ -1,4 +1,4 @@
-const Paciente = require("./paciente");
+const Paciente = require("./pacient");
 const Consulta = require("./consulta");
 const Exame = require("./exame");
 const Prontuario = require("./medicalRecord");
