@@ -47,20 +47,20 @@ export class Patient {
   }
 
   addDiagnosis(diagnosis) {
-    const diagnosis = new Diagnosis(diagnosis);
-    this.medicalRecord.addDiagnosis(diagnosis);
+    const diagnosisToAdd = new Diagnosis(diagnosis);
+    this.medicalRecord.addDiagnosis(diagnosisToAdd);
     console.log(`Diagnosis added to medical record of patient ${this.name}`);
   }
 
   addMedication(medication) {
-    const medication = new Medication(medication);
-    this.medicalRecord.addMedication(medication);
+    const medicationToAdd = new Medication(medication);
+    this.medicalRecord.addMedication(medicationToAdd);
     console.log(`Medication ${medication.name} added to medical record of patient ${this.name}`);
   }
 
   addTreatment(treatment) {
-    const treatment = new Treatment(treatment);
-    this.medicalRecord.addTreatment(treatment);
+    const treatmentToAdd = new Treatment(treatment);
+    this.medicalRecord.addTreatment(treatmentToAdd);
     console.log(`Treatment added to medical record of patient ${this.name}`);
   }
 
