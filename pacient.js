@@ -1,7 +1,7 @@
 const { Allergy } = require("./allergy");
-const { Diagnosis } = require("./dagnosis");
+const { Diagnosis } = require("./diagnosis");
 
-class Patient {
+export class Patient {
   constructor(
     id,
     cpf,
@@ -31,10 +31,19 @@ class Patient {
     this.exams = [];
   }
 
-  addAllergy(type) {
-    const allergy = new Allergy(type);
-    this.allergies.push(allergy);
-    console.log(`Allergy ${type} added to patient ${this.name}`);
+  addAllergy(allergy) {
+    if (!(allergy instanceof Allergy)) {
+      throw new Error("Invalid allergy type.");
+    }
+
+    const hasAllergy = this.allergies.some((a) => a.equals(allergy));
+
+    if (!hasAllergy) {
+      this.allergies.push(allergy);
+      console.log(`Allergy ${allergy.name} added to patient ${this.name}`);
+    } else {
+      console.log(`Patient ${this.name} already has allergy ${allergy.name}`);
+    }
   }
 
   addDiagnosis(diagnosis) {
@@ -56,24 +65,25 @@ class Patient {
   }
 
   addExam(exam) {
-    this.exams.push(exam);
+    if (!(exam instanceof Exam)) {
+      throw new Error("Invalid exam type.");
+    }
 
-    console.log(`Exam ${exam.name} added with result: ${exam.result}`);
+    console.log(`Exam ${exam.type} added with result: ${exam.result}`);
   }
 
   scheduleAppointment(appointment) {
-    const appointmentAtSameTime = this.appointments.some(
-      (a) => a.date.getTime() === appointment.date.getTime()
-    );
-
-    if (appointmentAtSameTime) {
-      console.log("Patient already has an appointment scheduled for this time.");
-      return;
+    if (!(appointment instanceof Appointment)) {
+      throw new Error("Invalid appointment type.");
     }
-    this.appointments.push(appointment);
 
-    console.log(`Appointment scheduled for ${appointment.date} with ${appointment.doctor.name}`);
+    const hasConflict = this.appointments.some((appt) => appt.hasConflict(appointment));
+
+    if (!hasConflict) {
+      this.appointments.push(appointment);
+      console.log(`Appointment scheduled for patient ${this.name} on ${appointment.date}`);
+    } else {
+      console.log(`Appointment conflict for patient ${this.name} on ${appointment.date}`);
+    }
   }
 }
-
-module.exports = Patient;
