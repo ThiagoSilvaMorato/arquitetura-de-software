@@ -1,5 +1,5 @@
-const { Allergy } = require("./allergy");
-const { Diagnosis } = require("./diagnosis");
+import { Allergy } from "./Allergy.js";
+import { Diagnosis } from "./record/Diagnosis.js";
 
 export class Patient {
   constructor(

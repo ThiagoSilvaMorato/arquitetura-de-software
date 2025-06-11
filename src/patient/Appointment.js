@@ -1,4 +1,4 @@
-class Appointment {
+export class Appointment {
   constructor(id, date, patient, doctor, reason, status, notes) {
     this.id = id;
     this.date = date;
@@ -13,5 +13,3 @@ class Appointment {
     return this.date.getTime() === otherAppointment.date.getTime();
   }
 }
-
-module.exports = Appointment;

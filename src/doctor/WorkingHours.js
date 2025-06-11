@@ -1,4 +1,4 @@
-class WorkingHours {
+export class WorkingHours {
   constructor() {
     this.hours = [];
   }
@@ -36,5 +36,3 @@ class WorkingHours {
     return this.hours;
   }
 }
-
-module.exports = WorkingHours;

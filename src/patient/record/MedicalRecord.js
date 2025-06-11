@@ -1,6 +1,6 @@
-import { Diagnosis } from "./diagnosis.js";
-import { Treatment } from "./treatment.js";
-import { Medication } from "./medication.js";
+import { Diagnosis } from "./src/patient/record/Diagnosis.js";
+import { Treatment } from "./Treatment.js";
+import { Medication } from "./Medication.js";
 
 export class MedicalReport {
   constructor() {
