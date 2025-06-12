@@ -2,7 +2,7 @@ import { Diagnosis } from "./src/patient/record/Diagnosis.js";
 import { Treatment } from "./Treatment.js";
 import { Medication } from "./Medication.js";
 
-export class MedicalReport {
+export class MedicalRecord {
   constructor() {
     this.diagnosis = [];
     this.treatments = [];
