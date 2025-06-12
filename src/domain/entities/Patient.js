@@ -1,6 +1,3 @@
-import { Allergy } from "./Allergy.js";
-import { Diagnosis } from "./record/Diagnosis.js";
-
 export class Patient {
   constructor(
     id,
@@ -29,39 +26,6 @@ export class Patient {
     this.medicalRecord = [];
     this.appointments = [];
     this.exams = [];
-  }
-
-  addAllergy(allergy) {
-    if (!(allergy instanceof Allergy)) {
-      throw new Error("Invalid allergy type.");
-    }
-
-    const hasAllergy = this.allergies.some((a) => a.equals(allergy));
-
-    if (!hasAllergy) {
-      this.allergies.push(allergy);
-      console.log(`Allergy ${allergy.name} added to patient ${this.name}`);
-    } else {
-      console.log(`Patient ${this.name} already has allergy ${allergy.name}`);
-    }
-  }
-
-  addDiagnosis(diagnosis) {
-    const diagnosisToAdd = new Diagnosis(diagnosis);
-    this.medicalRecord.addDiagnosis(diagnosisToAdd);
-    console.log(`Diagnosis added to medical record of patient ${this.name}`);
-  }
-
-  addMedication(medication) {
-    const medicationToAdd = new Medication(medication);
-    this.medicalRecord.addMedication(medicationToAdd);
-    console.log(`Medication ${medication.name} added to medical record of patient ${this.name}`);
-  }
-
-  addTreatment(treatment) {
-    const treatmentToAdd = new Treatment(treatment);
-    this.medicalRecord.addTreatment(treatmentToAdd);
-    console.log(`Treatment added to medical record of patient ${this.name}`);
   }
 
   addExam(exam) {
