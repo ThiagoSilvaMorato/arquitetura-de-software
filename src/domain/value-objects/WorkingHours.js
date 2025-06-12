@@ -1,6 +1,6 @@
 export class WorkingHours {
-  constructor() {
-    this.hours = [];
+  constructor(hours = []) {
+    this.hours = hours;
   }
 
   equals(otherWorkingHours) {
@@ -8,18 +8,8 @@ export class WorkingHours {
       return false;
     }
 
-    for (let i = 0; i < this.hours.length; i++) {
-      const thisHour = this.hours[i];
-      const otherHour = otherWorkingHours.hours[i];
-
-      if (thisHour.day !== otherHour.day || thisHour.timeSlot !== otherHour.timeSlot) {
-        return false;
-      }
-    }
-
     return this.hours.every((hour, index) => {
-      const other = otherWorkingHours.hour[index];
-
+      const other = otherWorkingHours.hours[index];
       return hour.day === other.day && hour.timeSlot === other.timeSlot;
     });
   }

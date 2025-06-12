@@ -17,7 +17,7 @@ export class DoctorWorkingHoursService {
       throw new Error("Working hours already exist.");
     }
 
-    doctor.workingHours = new WorkingHours([...doctor.hasWorkingHours.hours, { day, timeSlot }]);
+    doctor.workingHours = new WorkingHours([...doctor.workingHours.hours, { day, timeSlot }]);
 
     this.doctorRepository.update(doctor.id, doctor);
     return doctor;
@@ -61,16 +61,16 @@ export class DoctorWorkingHoursService {
     return doctor.workingHours;
   }
 
-  isWithinWorkingHours(doctor, date) {
+  isWithinWorkingHours(workingHours, date) {
     const dayOfWeek = date.toLocaleDateString("en-US", { weekday: "long" });
     const timeSlot = date.toLocaleTimeString("en-US", {
-      hours: "2-digit",
-      minutes: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
     });
 
-    return doctor.workingHours.hours.some(
-      (workingHours) =>
-        workingHours.day === dayOfWeek && this.isTimeWithinSlot(timeSlot, workingHours.timeSlot)
+    return workingHours.hours.some(
+      (workingHour) =>
+        workingHour.day === dayOfWeek && this.isTimeWithinSlot(timeSlot, workingHour.timeSlot)
     );
   }
 }
